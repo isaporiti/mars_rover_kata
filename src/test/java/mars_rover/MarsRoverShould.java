@@ -2,6 +2,9 @@ package mars_rover;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class MarsRoverShould {
@@ -58,6 +61,17 @@ public class MarsRoverShould {
         Grid grid = new Grid(10, 10);
         MarsRover marsRover = new MarsRover(grid);
         assertEquals("0:0:N", marsRover.execute("MMMMMMMMMM"));
+    }
+
+    @Test void move_through_a_grid_until_it_faces_an_obstacle() {
+        List<Obstacle> obstacles = Arrays.asList(
+            new Obstacle(
+                new Coordinates(0, 3)
+            )
+        );
+        Grid grid = new Grid(10, 10, obstacles);
+        MarsRover marsRover = new MarsRover(grid);
+        assertEquals("0:2:N", marsRover.execute("MMM"));
     }
 
 }

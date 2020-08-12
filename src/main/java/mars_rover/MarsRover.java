@@ -1,5 +1,7 @@
 package mars_rover;
 
+import mars_rover.exceptions.GridCoordinatesBlockedException;
+
 public class MarsRover {
 	private Grid grid;
 	private Coordinates coordinates;
@@ -13,6 +15,15 @@ public class MarsRover {
 	}
 
 	public String execute(String command) {
+		try {
+			executeCommand(command);
+		} catch (GridCoordinatesBlockedException e) {
+			e.printStackTrace();
+		}
+		return buildPositionString();
+	}
+
+	private void executeCommand(String command) throws GridCoordinatesBlockedException {
 		for (String subcommand : command.split("")) {
 			if (subcommand.equals("L")) {
 				turnLeft();
@@ -22,7 +33,6 @@ public class MarsRover {
 				doOneStep();
 			}
 		}
-		return buildPositionString();
 	}
 
 	private void turnLeft() {
@@ -33,7 +43,7 @@ public class MarsRover {
 		direction = direction.turnRight();
 	}
 
-	private void doOneStep() {
+	private void doOneStep() throws GridCoordinatesBlockedException {
 		coordinates = grid.getNextCoordinates(this);
 	}
 

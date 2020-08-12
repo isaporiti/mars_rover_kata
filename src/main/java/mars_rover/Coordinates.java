@@ -33,4 +33,13 @@ public class Coordinates {
         return new Coordinates(x, y - 1);
     }
 
+    @Override
+    public boolean equals(Object object) {
+        Coordinates otherCoordinates = (Coordinates) object;
+        return (
+            super.equals(otherCoordinates)
+            || (x.equals(otherCoordinates.getX()) && y.equals(otherCoordinates.getY()))
+        );
+    }
+
 }
