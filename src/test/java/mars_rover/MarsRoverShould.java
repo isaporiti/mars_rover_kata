@@ -12,4 +12,9 @@ public class MarsRoverShould {
         assertEquals("0:3:N", marsRover.execute("MM"));
         assertEquals("0:9:N", marsRover.execute("MMMMMM"));
     }
+
+    @Test void rotate_from_north_to_west_when_receiving_L_command() {
+        MarsRover marsRover = new MarsRover();
+        assertEquals("0:0:W", marsRover.execute("L"));
+    }
 }
