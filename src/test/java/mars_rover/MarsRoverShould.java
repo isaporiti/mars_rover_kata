@@ -19,7 +19,7 @@ public class MarsRoverShould {
         assertEquals("0:0:S", marsRover.execute("L"));
         assertEquals("0:0:E", marsRover.execute("L"));
         assertEquals("0:0:N", marsRover.execute("L"));
-        assertEquals("0:0:N", marsRover.execute("RRRR"));
+        assertEquals("0:0:N", marsRover.execute("LLLL"));
     }
 
     @Test void rotate_and_face_four_cardinal_directions_when_receiving_R_command() {
@@ -29,6 +29,19 @@ public class MarsRoverShould {
         assertEquals("0:0:W", marsRover.execute("R"));
         assertEquals("0:0:N", marsRover.execute("R"));
         assertEquals("0:0:N", marsRover.execute("RRRR"));
+    }
+
+    @Test void rotate_and_face_all_directions_and_advance_towards_them() {
+        MarsRover marsRover = new MarsRover();
+        assertEquals("2:0:E", marsRover.execute("RMM"));
+        assertEquals("2:-2:S", marsRover.execute("RMM"));
+        assertEquals("-2:-2:W", marsRover.execute("RMMMM"));
+        assertEquals("-2:-2:N", marsRover.execute("R"));
+
+        assertEquals("-4:-2:W", marsRover.execute("LMM"));
+        assertEquals("-4:-4:S", marsRover.execute("LMM"));
+        assertEquals("0:-4:E", marsRover.execute("LMMMM"));
+        assertEquals("0:-4:N", marsRover.execute("L"));
     }
 
 }

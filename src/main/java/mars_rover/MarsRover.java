@@ -1,9 +1,14 @@
 package mars_rover;
 
 public class MarsRover {
+	private Coordinates coordinates;
+	private Direction direction;
+	private String positionTemplate = "%d:%d:%s";
 
-	private Integer yCoordinate = 0;
-	private CardinalDirection cardinalDirection = CardinalDirection.NORTH;
+	public MarsRover() {
+		this.coordinates = new Coordinates(0, 0);
+		this.direction = Direction.NORTH;
+	}
 
 	public String execute(String command) {
 		for (String subcommand : command.split("")) {
@@ -12,23 +17,31 @@ public class MarsRover {
 			} else if (subcommand.equals("R")) {
 				turnRight();
 			} else {
-				advanceOneStep();
+				doOneStep();
 			}
 		}
-
-		return "0:" + yCoordinate + ":" + cardinalDirection.toString();
-	}
-
-	private void advanceOneStep() {
-		yCoordinate++;
+		return buildPositionString();
 	}
 
 	private void turnLeft() {
-		cardinalDirection = cardinalDirection.turnLeft();
+		direction = direction.turnLeft();
 	}
 
 	private void turnRight() {
-		cardinalDirection = cardinalDirection.turnRight();
+		direction = direction.turnRight();
+	}
+
+	private void doOneStep() {
+		coordinates = direction.getNextCoordinates(coordinates);
+	}
+
+	private String buildPositionString() {
+		return String.format(
+			positionTemplate,
+			coordinates.getX(),
+			coordinates.getY(),
+			direction.toString()
+		);
 	}
 
 }
