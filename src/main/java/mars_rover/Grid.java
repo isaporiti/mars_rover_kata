@@ -15,7 +15,7 @@ public class Grid {
         this.verticalSize = verticalSize;
         this.obstacles = new ArrayList<Obstacle>();
     }
-        
+
     public Grid(Integer horizontalSize, Integer verticalSize, List<Obstacle> obstacles) {
         this.horizontalSize = horizontalSize;
         this.verticalSize = verticalSize;
@@ -31,7 +31,7 @@ public class Grid {
         }
 
         return wrappedAroundCoordinates;
-	}
+    }
 
     private Boolean coordinatesAreBlocked(Coordinates wrappedAroundCoordinates) {
         return obstacles.stream().anyMatch(obstacle -> {
