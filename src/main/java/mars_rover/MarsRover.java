@@ -8,17 +8,27 @@ public class MarsRover {
 	public String execute(String command) {
 		for (String subcommand : command.split("")) {
 			if (subcommand.equals("L")) {
-				cardinalDirection = cardinalDirection.getLeftDirection();
-			}
-			else if (subcommand.equals("R")) {
-				cardinalDirection = cardinalDirection.getRightDirection();
-			} 
-			else {
-				yCoordinate++;
+				turnLeft();
+			} else if (subcommand.equals("R")) {
+				turnRight();
+			} else {
+				advanceOneStep();
 			}
 		}
 
-		return "0:"+ yCoordinate + ":" + cardinalDirection.toString();
+		return "0:" + yCoordinate + ":" + cardinalDirection.toString();
+	}
+
+	private void advanceOneStep() {
+		yCoordinate++;
+	}
+
+	private void turnLeft() {
+		cardinalDirection = cardinalDirection.turnLeft();
+	}
+
+	private void turnRight() {
+		cardinalDirection = cardinalDirection.turnRight();
 	}
 
 }
