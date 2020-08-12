@@ -10,6 +10,9 @@ public class MarsRover {
 			if (subcommand.equals("L")) {
 				cardinalDirection = cardinalDirection.getLeftDirection();
 			}
+			else if (subcommand.equals("R")) {
+				cardinalDirection = cardinalDirection.getRightDirection();
+			} 
 			else {
 				yCoordinate++;
 			}
