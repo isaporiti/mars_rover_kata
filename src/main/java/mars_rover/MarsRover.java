@@ -1,13 +1,15 @@
 package mars_rover;
 
 public class MarsRover {
+	private Grid grid;
 	private Coordinates coordinates;
 	private Direction direction;
 	private String positionTemplate = "%d:%d:%s";
 
-	public MarsRover() {
+	public MarsRover(Grid grid) {
 		this.coordinates = new Coordinates(0, 0);
 		this.direction = Direction.NORTH;
+		this.grid = grid;
 	}
 
 	public String execute(String command) {
@@ -32,7 +34,7 @@ public class MarsRover {
 	}
 
 	private void doOneStep() {
-		coordinates = direction.getNextCoordinates(coordinates);
+		coordinates = grid.getNextCoordinates(this);
 	}
 
 	private String buildPositionString() {
@@ -42,6 +44,10 @@ public class MarsRover {
 			coordinates.getY(),
 			direction.toString()
 		);
+	}
+
+	public Coordinates getDirectedNextCoordinates() {
+		return direction.getNextCoordinates(coordinates);
 	}
 
 }
