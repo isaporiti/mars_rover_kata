@@ -44,4 +44,9 @@ public class MarsRoverShould {
         assertEquals("0:-4:N", marsRover.execute("L"));
     }
 
+    @Test void move_freely_with_no_obstacles() {
+        MarsRover marsRover = new MarsRover();
+        assertEquals("2:3:N", marsRover.execute("MMRMMLM"));
+    }
+
 }
